@@ -1,27 +1,41 @@
+import {
+    REQUESTED_TASK_SUCCEEDED_BY_ID,
+    REQUESTED_TASKS,
+    REQUESTED_TASKS_FAILED,
+    REQUESTED_TASKS_SUCCEEDED
+} from './types'
+
 const initialState = {
-    url: '',
+    tasks: [],
     loading: false,
     error: false
 }
+
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'REQUESTED_DOG':
+        case REQUESTED_TASKS:
             return {
-                url: '',
+                tasks: [],
                 loading: true,
                 error: false
             }
-        case 'REQUESTED_DOG_SUCCEEDED':
+        case REQUESTED_TASKS_SUCCEEDED:
             return {
-                url: action.url,
+                tasks: action.tasks,
                 loading: false,
                 error: false
             }
-        case 'REQUESTED_DOG_FAILED':
+        case REQUESTED_TASKS_FAILED:
             return {
-                url: '',
+                tasks: [],
                 loading: false,
                 error: true
+            }
+        case REQUESTED_TASK_SUCCEEDED_BY_ID:
+            return {
+                tasks: [],
+                loading: false,
+                error: false
             }
         default:
             return state

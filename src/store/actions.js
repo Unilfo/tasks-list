@@ -1,15 +1,39 @@
-export const requestDog = () => {
-    return {type: 'REQUESTED_DOG'}
+import {
+    FETCHED_TASKS,
+    REQUESTED_TASK_SUCCEEDED_BY_ID,
+    REQUESTED_TASKS,
+    REQUESTED_TASKS_FAILED,
+    REQUESTED_TASKS_SUCCEEDED
+} from './types'
+
+export const requestTasks = () => {
+    return {
+        type: REQUESTED_TASKS
+    }
 }
 
-export const requestDogSuccess = (data) => {
-    return {type: 'REQUESTED_DOG_SUCCEEDED', url: data.message}
+export const requestTasksSuccess = (data) => {
+    return {
+        type: REQUESTED_TASKS_SUCCEEDED,
+        tasks: data
+    }
 }
 
-export const requestDogError = () => {
-    return {type: 'REQUESTED_DOG_FAILED'}
+export const requestTaskSuccessByID = (data) => {
+    return {
+        type: REQUESTED_TASK_SUCCEEDED_BY_ID,
+        id: data
+    }
 }
 
-export const fetchDog = () => {
-    return {type: 'FETCHED_DOG'}
+export const requestTasksError = () => {
+    return {
+        type: REQUESTED_TASKS_FAILED
+    }
+}
+
+export const fetchTasks = () => {
+    return {
+        type: FETCHED_TASKS
+    }
 }

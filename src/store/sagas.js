@@ -1,21 +1,39 @@
 import {put, takeEvery, call} from 'redux-saga/effects'
-import {requestDog, requestDogError, requestDogSuccess} from './actions'
+import {requestTasks, requestTasksError, requestTasksSuccess, requestTaskSuccessByID} from './actions'
+import {FETCHED_TASKS, REQUESTED_TASK_SUCCEEDED_BY_ID} from './types'
 
-export default function* watchFetchDog() {
-    yield takeEvery('FETCHED_DOG', fetchDogAsync)
+export default function* watchFetchTasks() {
+    yield takeEvery(FETCHED_TASKS, fetchTasksAsync)
+    yield takeEvery(REQUESTED_TASK_SUCCEEDED_BY_ID, fetchTasksAsyncById)
 }
 
-function* fetchDogAsync() {
+function* fetchTasksAsync() {
     try {
-        yield put(requestDog())
+        yield put(requestTasks())
         const data = yield call(() => {
-                return fetch('https://dog.ceo/api/breeds/image/random')
+                return fetch('http://localhost:3001/tasks')
                     .then(res => res.json())
             }
         )
-        yield put(requestDogSuccess(data))
+        yield put(requestTasksSuccess(data))
     } catch (error) {
-        yield put(requestDogError())
+        yield put(requestTasksError())
+    }
+}
+
+function* fetchTasksAsyncById(action){  // fixed
+    const id = action.id
+    console.log(action)
+    try {
+        yield put(requestTasks())
+        const data = yield call(() => {
+                return fetch('http://localhost:3001/tasks/'+id)
+                    .then(res => res.json())
+            }
+        )
+        yield put(requestTaskSuccessByID(data))
+    } catch (error) {
+        yield put(requestTasksError())
     }
 }
 
