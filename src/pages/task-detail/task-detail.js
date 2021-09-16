@@ -1,16 +1,31 @@
 import React, {useEffect} from 'react'
-import {useDispatch} from 'react-redux'
-import {requestTaskSuccessByID} from '../../store/actions'
+import {useDispatch, useSelector} from 'react-redux'
+import {fetchTaskByID} from '../../store/actions'
+import {useParams} from 'react-router-dom'
 
 const TaskDetail = () => {
     const dispatch = useDispatch()
+    const {id} = useParams()
+    const task = useSelector(state => state.tasks[0])
+    const loading = useSelector(state => state.loading)
 
-    useEffect(()=>{
-        dispatch(requestTaskSuccessByID(2))
-    },[])
+    useEffect(() => {
+        dispatch(fetchTaskByID(id))
+    },[id, dispatch])
+
+    if(loading){
+        return (
+            <div>Loading...</div>
+        )
+    }
 
     return (
-        <div>TaskDetail</div>
+        <div>
+            TaskDetail
+            <div>
+                {task && task.title}
+            </div>
+        </div>
     )
 }
 

@@ -33,7 +33,8 @@ const rootReducer = (state = initialState, action) => {
             }
         case REQUESTED_TASK_SUCCEEDED_BY_ID:
             return {
-                tasks: [],
+                ...state,
+                tasks: [action.tasks],
                 loading: false,
                 error: false
             }

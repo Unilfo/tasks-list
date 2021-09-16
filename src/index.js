@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom'
 import {createStore, applyMiddleware, compose} from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import {Provider} from 'react-redux'
-import watchFetchDog from './store/sagas'
+import watchFetchTasks from './store/sagas'
 import rootReducer from './store/reducers'
 import Routes from './components/routes'
 import {
     BrowserRouter as Router,
 } from 'react-router-dom'
-import {fetchTasks} from './store/actions'
+
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware()
@@ -22,8 +22,7 @@ const store = createStore(
     ))
 
 // then run the saga
-sagaMiddleware.run(watchFetchDog)
-store.dispatch(fetchTasks())
+sagaMiddleware.run(watchFetchTasks)
 
 ReactDOM.render(
     <React.StrictMode>

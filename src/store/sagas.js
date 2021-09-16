@@ -1,10 +1,10 @@
 import {put, takeEvery, call} from 'redux-saga/effects'
 import {requestTasks, requestTasksError, requestTasksSuccess, requestTaskSuccessByID} from './actions'
-import {FETCHED_TASKS, REQUESTED_TASK_SUCCEEDED_BY_ID} from './types'
+import {FETCHED_TASK_BY_ID, FETCHED_TASKS} from './types'
 
 export default function* watchFetchTasks() {
     yield takeEvery(FETCHED_TASKS, fetchTasksAsync)
-    yield takeEvery(REQUESTED_TASK_SUCCEEDED_BY_ID, fetchTasksAsyncById)
+    yield takeEvery(FETCHED_TASK_BY_ID, fetchTasksAsyncById)
 }
 
 function* fetchTasksAsync() {
@@ -21,9 +21,9 @@ function* fetchTasksAsync() {
     }
 }
 
-function* fetchTasksAsyncById(action){  // fixed
+function* fetchTasksAsyncById(action){
     const id = action.id
-    console.log(action)
+
     try {
         yield put(requestTasks())
         const data = yield call(() => {
