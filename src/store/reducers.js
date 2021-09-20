@@ -1,4 +1,5 @@
 import {
+    REQUESTED_COMMENTS_BY_ID,
     REQUESTED_TASK_SUCCEEDED_BY_ID,
     REQUESTED_TASKS,
     REQUESTED_TASKS_FAILED,
@@ -8,7 +9,8 @@ import {
 const initialState = {
     tasks: [],
     loading: false,
-    error: false
+    error: false,
+    comments: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -16,18 +18,21 @@ const rootReducer = (state = initialState, action) => {
         case REQUESTED_TASKS:
             return {
                 tasks: [],
+                comments: [],
                 loading: true,
                 error: false
             }
         case REQUESTED_TASKS_SUCCEEDED:
             return {
                 tasks: action.tasks,
+                comments: [],
                 loading: false,
                 error: false
             }
         case REQUESTED_TASKS_FAILED:
             return {
                 tasks: [],
+                comments: [],
                 loading: false,
                 error: true
             }
@@ -35,6 +40,13 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 tasks: [action.tasks],
+                loading: false,
+                error: false
+            }
+        case REQUESTED_COMMENTS_BY_ID:
+            return {
+                ...state,
+                comments: action.comments,
                 loading: false,
                 error: false
             }

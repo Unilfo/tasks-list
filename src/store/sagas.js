@@ -1,10 +1,17 @@
 import {put, takeEvery, call} from 'redux-saga/effects'
-import {requestTasks, requestTasksError, requestTasksSuccess, requestTaskSuccessByID} from './actions'
-import {FETCHED_TASK_BY_ID, FETCHED_TASKS} from './types'
+import {
+    requestCommentsByID,
+    requestTasks,
+    requestTasksError,
+    requestTasksSuccess,
+    requestTaskSuccessByID
+} from './actions'
+import {FETCHED_COMMENTS_BY_ID, FETCHED_TASK_BY_ID, FETCHED_TASKS} from './types'
 
 export default function* watchFetchTasks() {
     yield takeEvery(FETCHED_TASKS, fetchTasksAsync)
     yield takeEvery(FETCHED_TASK_BY_ID, fetchTasksAsyncById)
+    yield takeEvery(FETCHED_COMMENTS_BY_ID, fetchCommentsAsuncByID)
 }
 
 function* fetchTasksAsync() {
@@ -32,6 +39,22 @@ function* fetchTasksAsyncById(action){
             }
         )
         yield put(requestTaskSuccessByID(data))
+    } catch (error) {
+        yield put(requestTasksError())
+    }
+}
+
+function* fetchCommentsAsuncByID(action){
+    const id = action.id
+
+    try {
+        yield put(requestTasks())
+        const data = yield call(() => {
+                return fetch('http://localhost:3001/comments?tasksId='+id)
+                    .then(res => res.json())
+            }
+        )
+        yield put(requestCommentsByID(data))
     } catch (error) {
         yield put(requestTasksError())
     }

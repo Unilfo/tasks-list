@@ -21,7 +21,7 @@ const Tasks = () => {
 
     return (
         <div>
-            {tasks.map(el => <div key={el.id} onClick={() => history.push(`/${el.id}`)}>{el.title}</div>)}
+            {tasks.map(el => <div key={el.id} onClick={() => history.push(`/tasks/${el.id}`)}>{el.title}</div>)}
         </div>
     )
 }
