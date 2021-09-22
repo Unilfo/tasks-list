@@ -14,11 +14,12 @@ export default function* watchFetchTasks() {
     yield takeEvery(FETCHED_COMMENTS_BY_ID, fetchCommentsAsuncByID)
 }
 
-function* fetchTasksAsync() {
+function* fetchTasksAsync({status}) {
+
     try {
         yield put(requestTasks())
         const data = yield call(() => {
-                return fetch('http://localhost:3001/tasks')
+                return fetch(`http://localhost:3001/tasks?status=${status}`)
                     .then(res => res.json())
             }
         )

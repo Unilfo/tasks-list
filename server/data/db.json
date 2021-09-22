@@ -1,19 +1,75 @@
 {
   "tasks": [
-    { "id": 1, "title": "json-server1", "author": "1", "date": "01.01.2021"},
-    { "id": 2, "title": "json-server2", "author": "2", "date": "01.01.2021" },
-    { "id": 3, "title": "json-server3", "author": "3", "date": "01.01.2021" },
-    { "id": 4, "title": "json-server4", "author": "1", "date": "01.01.2021" }
+    {
+      "id": 1,
+      "title": "json-server1",
+      "author": "1",
+      "date": "01.01.2021",
+      "status": "false"
+    },
+    {
+      "id": 2,
+      "title": "json-server2",
+      "author": "2",
+      "date": "01.01.2021",
+      "status": "false"
+    },
+    {
+      "id": 3,
+      "title": "json-server3",
+      "author": "3",
+      "date": "01.01.2021",
+      "status": "false"
+    },
+    {
+      "id": 4,
+      "title": "json-server4",
+      "author": "1",
+      "date": "01.01.2021",
+      "status": "true"
+    },
+    {
+      "id": 99,
+      "title": "json-server99",
+      "author": "1",
+      "date": "01.01.2021",
+      "status": "false"
+    }
   ],
   "users": [
-    { "id": 1, "name": "user1" },
-    { "id": 2, "name": "user2" },
-    { "id": 3, "name": "user3" }
+    {
+      "id": 1,
+      "name": "user1"
+    },
+    {
+      "id": 2,
+      "name": "user2"
+    },
+    {
+      "id": 3,
+      "name": "user3"
+    }
   ],
   "comments": [
-    { "id": 1, "body": "some comment1", "tasksId": 1 },
-    { "id": 2, "body": "some comment2", "tasksId": 2 },
-    { "id": 3, "body": "some comment3", "tasksId": 1 },
-    { "id": 4, "body": "some comment4", "tasksId": 3 }
+    {
+      "id": 1,
+      "body": "some comment1",
+      "tasksId": 1
+    },
+    {
+      "id": 2,
+      "body": "some comment2",
+      "tasksId": 2
+    },
+    {
+      "id": 3,
+      "body": "some comment3",
+      "tasksId": 1
+    },
+    {
+      "id": 4,
+      "body": "some comment4",
+      "tasksId": 3
+    }
   ]
 }

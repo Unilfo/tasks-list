@@ -1,8 +1,11 @@
 import React from 'react'
+import {ListGroup} from 'react-bootstrap'
 
 const CommentCard = ({comment}) => {
     return (
-        <div key={comment.id}>{comment.body}</div>
+        <ListGroup key={comment.id}>
+            <ListGroup.Item variant="light">{comment.body}</ListGroup.Item>
+        </ListGroup>
     )
 }
 

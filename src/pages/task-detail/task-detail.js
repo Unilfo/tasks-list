@@ -25,7 +25,6 @@ const TaskDetail = () => {
 
     return (
         <div>
-            <p>TaskDetail</p>
             <div>{task.map(el => <TaskCard key={el.id} task={el}/>)}</div>
             <div>{comments.map(el => <CommentCard key={el.id} comment={el}/>)}</div>
         </div>

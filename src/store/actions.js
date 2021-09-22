@@ -41,9 +41,10 @@ export const requestTasksError = () => {
     }
 }
 
-export const fetchTasks = () => {
+export const fetchTasks = (status) => {
     return {
-        type: FETCHED_TASKS
+        type: FETCHED_TASKS,
+        status
     }
 }
 
